@@ -19,10 +19,12 @@ struct ContentView: View {
         // properties for formula
         let peopleCount = Double(numberOfPeople+2)
         let tipSelection = Double(tipPercentage)
+        
         // formula for split calculator
         let tipValue = checkAmount/100*tipSelection
         let grandTotal = checkAmount+tipValue
         let amountPerPerson = grandTotal/peopleCount
+        
         // return value
         return amountPerPerson
     }
@@ -50,6 +52,7 @@ struct ContentView: View {
                 }
                 Section(header: Text("Summary")){
                     Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                        .foregroundStyle(tipPercentage == 0 ? .red : .primary)
                 }
             }
             .navigationTitle("WeSplit")
